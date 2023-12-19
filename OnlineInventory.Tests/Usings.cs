@@ -1,0 +1,17 @@
+global using Moq;
+global using FluentAssertions;
+global using Xunit;
+global using OnlineInventory.Application.Services;
+global using OnlineInventory.Application.Interfaces;
+global using OnlineInventory.Domain.Entities;
+global using System.Collections.Generic;
+global using System.Threading.Tasks;
+global using Microsoft.EntityFrameworkCore;
+global using OnlineInventory.Infrastructure.Repositories;
+global using System.Linq;
+global using OnlineInventory.Infrastructure.Context;
+global using Microsoft.AspNetCore.Mvc.Testing;
+global using OnlineInventory.API.Controllers;
+global using System.Net;
+global using System.Net.Http.Json;
+global using OnlineInventory.API;
