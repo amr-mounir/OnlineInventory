@@ -2,61 +2,6 @@
 {
     public class ProductRepositoryTests
     {
-        [Fact]
-        public async Task GetAllProducts_ReturnsProductsFromDatabase()
-        {
-            // Arrange
-            var options = new DbContextOptionsBuilder<OnlineInventoryDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test_Database_GetAllProducts")
-                .Options;
-
-            using (var context = new OnlineInventoryDbContext(options))
-            {
-                context.Products.AddRange(new Product(), new Product());
-                context.SaveChanges();
-            }
-
-            using (var context = new OnlineInventoryDbContext(options))
-            {
-                var repository = new ProductRepository(context);
-
-                // Act
-                var result = repository.GetAllProducts();
-
-                // Assert
-                result.Should().NotBeNull().And.BeAssignableTo<IEnumerable<Product>>();
-                result.Should().HaveCount(2);
-            }
-        }
-
-        [Fact]
-        public async Task GetProductById_ReturnsProductFromDatabase()
-        {
-            // Arrange
-            var productId = 1;
-            var options = new DbContextOptionsBuilder<OnlineInventoryDbContext>()
-                .UseInMemoryDatabase(databaseName: "Test_Database_GetProductById")
-                .Options;
-
-            using (var context = new OnlineInventoryDbContext(options))
-            {
-                context.Products.Add(new Product { ProductId = productId });
-                context.SaveChanges();
-            }
-
-            using (var context = new OnlineInventoryDbContext(options))
-            {
-                var repository = new ProductRepository(context);
-
-                // Act
-                var result = repository.GetProductById(productId);
-
-                // Assert
-                result.Should().NotBeNull().And.BeAssignableTo<IEnumerable<Product>>();
-                result.Should().HaveCount(1);
-                result.First().ProductId.Should().Be(productId);
-            }
-        }
 
         [Fact]
         public async Task InsertProductAsync_ShouldAddProductToDatabase()

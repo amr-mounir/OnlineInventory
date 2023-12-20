@@ -36,7 +36,6 @@ namespace OnlineInventory.Infrastructure.Repositories
             _dbContext.Products.Add(product);
             await _dbContext.SaveChangesAsync();
 
-            // Log audit entry to Firebase
             LogAuditEntry("Product created", product);
         }
 
@@ -46,7 +45,6 @@ namespace OnlineInventory.Infrastructure.Repositories
             _dbContext.Entry(product).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
 
-            // Log audit entry to Firebase
             LogAuditEntry("Product updated", product);
         }
 
@@ -59,7 +57,6 @@ namespace OnlineInventory.Infrastructure.Repositories
                 _dbContext.Products.Remove(product);
                 await _dbContext.SaveChangesAsync();
 
-                // Log audit entry to Firebase
                 LogAuditEntry("Product deleted", product);
             }
         }
@@ -71,8 +68,7 @@ namespace OnlineInventory.Infrastructure.Repositories
                 Timestamp = DateTime.UtcNow,
                 Action = action,
                 ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                // Include other relevant details
+                ProductName = product.ProductName
             };
 
             var firebaseDatabase = new Firebase.Database.FirebaseClient("https://onlineinventory-56e2f-default-rtdb.firebaseio.com");

@@ -1,5 +1,6 @@
 using Firebase.Database;
 using Microsoft.EntityFrameworkCore;
+using OnlineInventory.API.Shared;
 using OnlineInventory.Application.Interfaces;
 using OnlineInventory.Application.Services;
 using OnlineInventory.Infrastructure.Context;
@@ -49,16 +50,4 @@ namespace OnlineInventory.API
             app.Run();
         }
     }
-
-    public class FirebaseConfig
-    {
-        public string ApiKey { get; set; }
-        public string AuthDomain { get; set; }
-        public string DatabaseUrl { get; set; }
-        public string ProjectId { get; set; }
-        public string StorageBucket { get; set; }
-        public string MessagingSenderId { get; set; }
-        public string AppId { get; set; }
-    }
-
 }
